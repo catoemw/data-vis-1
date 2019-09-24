@@ -1,12 +1,20 @@
 import React from 'react';
 import './App.css';
-import ExampleComponent1 from './routes/ExampleComponent1.js';
+import Navigation from "./components/Navigation";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { StoreMap, LoanTable, EarthquakeMap } from "./routes";
 
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <ExampleComponent1 />
+      <Navigation />
+      <Router>
+        <Route path="/" exact component={StoreMap} />
+        <Route path="/loan-table" component={LoanTable} />
+        <Route path="/earthquake-map" component={EarthquakeMap} />
+
+      </Router>
     </div>
   );
 }
