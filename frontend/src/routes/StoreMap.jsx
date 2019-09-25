@@ -69,12 +69,6 @@ const StoreMap = () => {
                 <Layer
                     sourceId="store-source"
                     filter={["!", ["has", "point_count"]]}
-                    data={{
-                        type: "geojson", data: {
-                            type: "FeatureCollection",
-                            features: stores
-                        }
-                    }}
                     id="stores"
                     type="circle"
                     paint={{ "circle-color": "#00A", "circle-stroke-width": 2, "circle-stroke-color": "#FFF" }}

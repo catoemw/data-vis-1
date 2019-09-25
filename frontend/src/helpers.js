@@ -12,3 +12,18 @@ export const parseStores = stores => {
     })
     return newStores;
 }
+
+export const parseEarthquakes = earthquakes => {
+    const keys = earthquakes[0];
+    const rows = earthquakes.slice(1);
+    const newQuakes = rows.map(row => {
+        const data = { properties: {}, geometry: { type: "Point" } }
+        row.forEach((value, index) => {
+            const key = keys[index]
+            data.properties[key] = isNaN(value) ? value : Number(value)
+        });
+        data.geometry.coordinates = [data.properties.lat, data.properties.long]
+        return data;
+    })
+    return newQuakes;
+}
