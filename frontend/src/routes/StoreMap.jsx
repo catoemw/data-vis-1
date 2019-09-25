@@ -60,7 +60,7 @@ const StoreMap = () => {
                 <Source
                     id="store-source"
                     geoJsonSource={{
-                        type: "geojson", data: {
+                        type: "geojson", cluster: true, data: {
                             type: "FeatureCollection",
                             features: stores
                         }
@@ -68,6 +68,7 @@ const StoreMap = () => {
                 />
                 <Layer
                     sourceId="store-source"
+                    filter={["!", ["has", "point_count"]]}
                     data={{
                         type: "geojson", data: {
                             type: "FeatureCollection",
@@ -77,6 +78,39 @@ const StoreMap = () => {
                     id="stores"
                     type="circle"
                     paint={{ "circle-color": "#00A", "circle-stroke-width": 2, "circle-stroke-color": "#FFF" }}
+                />
+                <Layer
+                    id="store-clusters"
+                    type="circle"
+                    sourceId="store-source"
+                    filter={["has", "point_count"]}
+                    paint={{
+                        "circle-color": {
+                            property: "point_count",
+                            type: "interval",
+                            stops: [[0, "#00f"], [100, "#007"], [750, "#003"]]
+                        },
+                        "circle-stroke-width": 3,
+                        "circle-stroke-color": "#ffffff",
+                        "circle-radius": {
+                            property: "point_count",
+                            type: "interval",
+                            stops: [[0, 15], [75, 25], [400, 35]]
+                        }
+                    }}
+                />
+                <Layer
+                    id="store-cluster-count"
+                    type="symbol"
+                    sourceId="store-source"
+                    filter={["has", "point_count"]}
+                    layout={{
+                        "text-field": "{point_count_abbreviated}",
+                        "text-size": 14
+                    }}
+                    paint={{
+                        "text-color": "#FFFFFF"
+                    }}
                 />
             </Map>
             <div style={{ position: "absolute", bottom: 24, width: "100%" }}>
