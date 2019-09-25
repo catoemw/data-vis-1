@@ -8,8 +8,8 @@ import { StoreMap, LoanTable, EarthquakeMap } from "./routes";
 const App = () => {
   return (
     <div className="App">
-      <Navigation />
       <Router>
+        <Navigation />
         <Route path="/" exact component={StoreMap} />
         <Route path="/loan-table" component={LoanTable} />
         <Route path="/earthquake-map" component={EarthquakeMap} />

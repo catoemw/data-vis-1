@@ -25,15 +25,14 @@ const LoanTable = () => {
         setRowsPerPage(+e.target.value);
         setPage(0);
     };
-    return <div style={{ padding: 16, overflow: "scroll" }}>
-        <Typography align="center" variant="h6">Loan Data</Typography>
+    return <div style={{ padding: 16, overflow: "scroll", height: "calc(100vh - 96px)", position: "relative" }}>
         {loanData &&
             <Fragment>
                 <Table style={{ margin: "16px 12px 0px 12px", overflow: "hidden" }}>
                     <TableHead>
                         <TableRow>
                             {loanData[0].map((column, index) => {
-                                return <TableCell key={`column-${index}`}>{column}</TableCell>
+                            return <TableCell key={`column-${index}`}><Typography color="primary" variant="body1">{column}</Typography></TableCell>
                             })}
                         </TableRow>
                     </TableHead>
@@ -53,6 +52,7 @@ const LoanTable = () => {
                     page={page}
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
+                    style={{ position: "absolute", right: 0 }}
                 />
             </Fragment>
         }
