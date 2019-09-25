@@ -13,7 +13,6 @@ const App = () => {
         <Route path="/" exact component={StoreMap} />
         <Route path="/loan-table" component={LoanTable} />
         <Route path="/earthquake-map" component={EarthquakeMap} />
-
       </Router>
     </div>
   );
